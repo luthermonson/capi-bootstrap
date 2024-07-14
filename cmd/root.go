@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"capi-bootstrap/cloud"
+	"capi-bootstrap/cloud/linode"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -26,4 +28,13 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.capi-bootstrap.yaml)")
+}
+
+func CloudProviderFromClusterKind(kind string) cloud.Provider {
+	switch kind {
+	case "LinodeCluster":
+		return linode.NewProvider()
+	default:
+		return nil
+	}
 }

@@ -117,6 +117,8 @@ func runBootstrapCluster(cmd *cobra.Command, args []string) error {
 		return errors.New("machine not found")
 	}
 
+	// provider := CloudProviderFromClusterKind(clusterSpec.Spec.InfrastructureRef.Kind)
+
 	region := manifestMachine.Spec.Template.Spec.Region
 	image := manifestMachine.Spec.Template.Spec.Image
 	imageType := manifestMachine.Spec.Template.Spec.Type
